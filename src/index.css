@@ -1,0 +1,38 @@
+:root {
+  --primary: #ffefcf;
+  --secondary: #864000;
+  --tertiary: #d44000;
+  --quaternary: #ff7a00;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--primary);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Bona Nova", serif;
+}
+
+p,
+span,
+a {
+  font-family: "Monda", sans-serif;
+}
