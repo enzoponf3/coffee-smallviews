@@ -1,36 +1,33 @@
 import * as React from "react"
 
+import starIcon from "~/assets/icons/star_black_24dp.svg"
+import priceIcon from "~/assets/icons/attach_money_black_24dp.svg"
 import styles from "./CoffeCard.module.scss"
 
 interface Props{
-    coffe: any
+    coffee: any,
+    selectCoffee: () => void
 }
 
-const CoffeCard: React.FC<Props> = ({coffe}) => {
+const CoffeCard: React.FC<Props> = ({coffee, selectCoffee}) => {
   return (
-    <div className={styles.review}>
-      <div className={styles.coffeeTitle}>
-        <h3>{coffe.name}</h3>
-        <a href="#">Reviews</a>
-        <div className={styles.lastReview}>
-          <div className={styles.coffeData}>
-            <span>Last Review</span>
-            <span>{coffe.lastReview.createdAt}</span>
-          </div>
-          <span>{coffe.lastReview.review}</span>
+    <div onClick={selectCoffee} className={styles.review}>
+      <div className={styles.coffeeData}>
+        <h3>{coffee.name}</h3>
+        <div className={styles.score}>
+          <i className={styles.icon}><img src={starIcon} alt="star" /></i>
+          <span className={styles.rate}>
+            {coffee.rate}
+          </span>
+          <span className={styles.prices}>
+            { new Array(coffee.prices).fill(0).map( (e, i) =>{
+              return <i key={i}><img src={priceIcon} alt="money" /></i>
+            })
+            }</span>
         </div>
       </div>
       <div className={styles.reviewImage}>
-        <img loading="lazy" src={ coffe.image ? coffe.image : `src/assets/images/${coffe.image}`} alt="" />
-        <div className={styles.score}>
-              Score
-          <span>
-            {coffe.rate}
-            <div className={ 
-              coffe.rate >= 6.6 ? `${styles.scoreHigh}` : (coffe.rate >= 3.3 ? `${styles.scoreMedium}` : `${styles.scoreLow}`)
-            }></div>
-          </span>
-        </div>
+        <img loading="lazy" src={ coffee.image ? coffee.image : `src/assets/images/${coffee.image}`} alt="" />
       </div>
     </div>          
   )

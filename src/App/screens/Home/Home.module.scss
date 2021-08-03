@@ -1,47 +1,131 @@
 .headBackground {
-  background-color: rgba($color: #000000, $alpha: 0.8);
-  background-image: url("../../../assets/images/leftCoffe.jpg");
-  background-size: cover;
+  background: var(--primary);
   position: absolute;
   z-index: -1;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
-  filter: brightness(0.3);
-  &::after {
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
-    content: "";
-    display: block;
+  height: 70vh;
+  & :nth-child(1) {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    transform: rotate(-25deg);
+    height: 35vh;
+    top: 20%;
+    left: 5%;
   }
+  & :nth-child(2) {
+    height: 50vh;
+    position: absolute;
+    bottom: -20%;
+    left: 65%;
+    transform: rotate(180deg);
+  }
+  // img {
+  // position: absolute;
+  // top: 60%;
+  // left: 10%;
+  // transform: rotate(45deg);
+  // height: 5rem;
+  // }
+  // .stripes {
+  //   position: absolute;
+  //   top: 40%;
+  //   left: 30%;
+  //   transform: rotate(45deg);
+  //   div {
+  //     border-radius: 12px;
+  //     margin-bottom: 16px;
+  //     height: 8px;
+  //     background-color: var(--secondary);
+  //     &:nth-child(1) {
+  //       width: 20rem;
+  //     }
+  //     &:nth-child(2) {
+  //       width: 15rem;
+  //     }
+  //     &:nth-child(3) {
+  //       width: 5rem;
+  //     }
+  //   }
+  // }
+  // .circles {
+  //   position: absolute;
+  //   top: 50%;
+  //   left: 70%;
+  //   div {
+  //     border-radius: 50%;
+  //     &:nth-child(1) {
+  //       padding: 10rem;
+  //       border: 20px solid var(--secondary);
+  //     }
+  //     &:nth-child(2) {
+  //       background-color: transparent;
+  //       position: absolute;
+  //       padding: 5rem;
+  //       top: 3rem;
+  //       left: -8rem;
+  //       box-shadow: 0 0 0 26px var(--primary);
+  //     }
+  //   }
+  // }
 }
 
 .presentation {
   color: var(--primary);
-  height: calc(100vh - 6.8rem);
+  height: calc(70vh - 8.5rem);
   width: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  div {
-    border: 1px solid var(--primary);
-    padding: 3rem 7rem;
-    margin-bottom: 5rem;
+  .presentationBack {
+    border-radius: 12px;
+    // border: 1px solid #efefef;
+    // background-color: rgba($color: #efefef, $alpha: 0.1);
+    // backdrop-filter: blur(0px);
+    padding: 3rem 10rem;
     text-align: center;
     h2 {
-      text-transform: uppercase;
+      text-transform: capitalize;
       padding-bottom: 2rem;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
+      color: #121212;
     }
     span {
       font-size: 1.2rem;
       strong {
         text-decoration: underline;
+      }
+    }
+    form {
+      display: flex;
+      input {
+        box-shadow: 0 3px 6px rgba($color: #000000, $alpha: 0.3);
+        width: 100%;
+        padding: 0.2rem 1rem;
+        border-top-left-radius: 2rem;
+        border-bottom-left-radius: 2rem;
+        outline: none;
+        border: 2px solid transparent;
+        &:focus {
+          border: 2px solid var(--tertiary);
+        }
+      }
+      button {
+        outline: none;
+        border: none;
+        background-color: transparent;
+        i {
+          box-shadow: 0 3px 6px rgba($color: #000000, $alpha: 0.3);
+          border-top-right-radius: 2rem;
+          border-bottom-right-radius: 2rem;
+          display: flex;
+          background-color: var(--tertiary);
+          padding: 0 0.5rem;
+          height: 100%;
+          img {
+            width: 1.8rem;
+          }
+        }
       }
     }
   }
@@ -52,4 +136,5 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-bottom: 4rem;
 }

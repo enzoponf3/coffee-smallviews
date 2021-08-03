@@ -2,12 +2,16 @@
 import * as React from "react"
 import { motion } from "framer-motion"
 
+import { Helmet } from "react-helmet-async"
 import styles from "./About.module.scss"
 
 const About: React.FC = () => {
   return (
     <>
-      <div className={styles.headerImage}></div>
+      <Helmet>
+        <title>Coffe Smallview | About</title>
+        <meta name="description" content="Who I am and why I developed this app."/>
+      </Helmet>
       <motion.div 
         className={styles.about}
         animate={{opacity:1}}

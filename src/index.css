@@ -36,6 +36,7 @@ h5 {
 
 p,
 span,
-a {
+a,
+input {
   font-family: "Monda", sans-serif;
 }
