@@ -101,7 +101,7 @@ const Home: React.FC = () => {
           ))}
         </motion.div>
       }
-      {selectedCoffe !== "" && <Review closeReview={() => setSelectedCofee("")}/>}
+      <Review closeReview={() => setSelectedCofee("")} coffeeId={selectedCoffe}/>
     </>
   )
 }

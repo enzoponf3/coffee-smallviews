@@ -20,54 +20,6 @@
     left: 65%;
     transform: rotate(180deg);
   }
-  // img {
-  // position: absolute;
-  // top: 60%;
-  // left: 10%;
-  // transform: rotate(45deg);
-  // height: 5rem;
-  // }
-  // .stripes {
-  //   position: absolute;
-  //   top: 40%;
-  //   left: 30%;
-  //   transform: rotate(45deg);
-  //   div {
-  //     border-radius: 12px;
-  //     margin-bottom: 16px;
-  //     height: 8px;
-  //     background-color: var(--secondary);
-  //     &:nth-child(1) {
-  //       width: 20rem;
-  //     }
-  //     &:nth-child(2) {
-  //       width: 15rem;
-  //     }
-  //     &:nth-child(3) {
-  //       width: 5rem;
-  //     }
-  //   }
-  // }
-  // .circles {
-  //   position: absolute;
-  //   top: 50%;
-  //   left: 70%;
-  //   div {
-  //     border-radius: 50%;
-  //     &:nth-child(1) {
-  //       padding: 10rem;
-  //       border: 20px solid var(--secondary);
-  //     }
-  //     &:nth-child(2) {
-  //       background-color: transparent;
-  //       position: absolute;
-  //       padding: 5rem;
-  //       top: 3rem;
-  //       left: -8rem;
-  //       box-shadow: 0 0 0 26px var(--primary);
-  //     }
-  //   }
-  // }
 }
 
 .presentation {
@@ -79,9 +31,6 @@
   align-items: center;
   .presentationBack {
     border-radius: 12px;
-    // border: 1px solid #efefef;
-    // background-color: rgba($color: #efefef, $alpha: 0.1);
-    // backdrop-filter: blur(0px);
     padding: 3rem 10rem;
     text-align: center;
     h2 {
@@ -122,6 +71,7 @@
           background-color: var(--tertiary);
           padding: 0 0.5rem;
           height: 100%;
+          cursor: pointer;
           img {
             width: 1.8rem;
           }

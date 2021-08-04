@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-do
 
 import styles from "./Layout.module.scss"
 import logo from "~/favicon.svg"
+import penLogo from "~/assets/icons/edit_white_24dp.svg"
 import linkedinLogo from "~/assets/icons/linkedin.svg"
 import githubLogo from "~/assets/icons/github.svg"
 import Spinner from "~/App/components/spinner"
@@ -15,27 +16,21 @@ const Layout: React.FC = () => {
     <>
       <Router>
         <header className={styles.header}>
-          <div className={styles.headerContainer}>
-
+          <nav className={styles.headerContainer}>
             <NavLink to="/">
               <h1>Coffee Smallview
                 <img src={logo} alt="app logo"/>
               </h1>
             </NavLink>
-            <ul>
-              <li><NavLink exact to="/" activeClassName={styles.activeLink}>Home</NavLink></li>
-              <li><NavLink exact to="/about" activeClassName={styles.activeLink}>About</NavLink></li>
-              <div>
-                <a href="#">Log in</a>
-              </div>
-            </ul>
-            <div className={styles.burger}><span>Y</span></div>
-          </div>
+            <div>
+              <NavLink exact to="/add" activeClassName={styles.activeLink}>Review<i><img src={penLogo} alt="" /></i></NavLink>
+              <a href="#">Log in</a>
+            </div>
+          </nav>
         </header>
         <Switch>
           <Route exact path="/"><main><HomeScreen/></main></Route>
-          <Route path="/review/:reviewId"><main><Review/></main></Route>
-          <Route path="/about" ><main><About/></main></Route>
+          <Route path="/add" ><main>{/*<Add/>*/}</main></Route>
         </Switch>
       </Router>
       <footer>

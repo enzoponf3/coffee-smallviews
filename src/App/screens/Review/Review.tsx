@@ -2,14 +2,17 @@ import * as React from "react"
 import { Helmet } from "react-helmet-async"
 import { useParams } from "react-router-dom"
 
+import closeIcon from "~/assets/icons/close_white_24dp.svg"
+import starIcon from "~/assets/icons/star_black_24dp.svg"
+import starGreyIcon from "~/assets/icons/star-grey.svg"
 import styles from "./Review.module.scss"
 
 interface Props{
+  coffeeId: string
   closeReview: () => void
 }
 
-const Review: React.FC<Props> = ({closeReview}) => {
-  const { reviewId } = useParams<{reviewId: string}>()
+const Review: React.FC<Props> = ({coffeeId, closeReview}) => {
 
   const coffeShop = {
     id: "17645157",
@@ -29,22 +32,26 @@ const Review: React.FC<Props> = ({closeReview}) => {
     {
       id:"12",
       username:"Wara Were",
-      email:"warawara@gmail.com"
+      email:"warawara@gmail.com",
+      totalReviews:7678
     }
     ,{
       id:"99",
       username:"Ana Vita",
-      email:"vita_ana@gmail.com"
+      email:"vita_ana@gmail.com",
+      totalReviews:86
     }
     ,{
       id:"999",
       username:"Salji Jon",
-      email:"jonci@gmail.com"
+      email:"jonci@gmail.com",
+      totalReviews:125
     }
     ,{
       id:"9999",
       username:"Mani Qui",
-      email:"maniqui@gmail.com"
+      email:"maniqui@gmail.com",
+      totalReviews:2
     },
   ]
 
@@ -86,10 +93,10 @@ const Review: React.FC<Props> = ({closeReview}) => {
         <title>Review | {coffeShop.name}</title>
         <meta name="description" content={`Review of the coffee shop ${coffeShop.name}`}/>
       </Helmet>
-      <div className={styles.reviewContainer}>
-
-        <div onClick={closeReview} className={styles.coffeInfo}>
-          <div>
+      <div className={coffeeId === "" ? `${styles.reviewBack}` : `${styles.reviewBack} ${styles.expanded}`}>
+        <div className={styles.reviewContainer}>
+          <button onClick={closeReview} className={styles.close} type="button"><i><img src={closeIcon} alt="close" /></i></button>
+          <div className={styles.coffeInfo}>
             <h2>{coffeShop.name}</h2>
             <div>
             Score
@@ -98,17 +105,33 @@ const Review: React.FC<Props> = ({closeReview}) => {
               </span>
             </div>
           </div>
-          <div className={styles.coffeImage}>
-            <img src={coffeShop.image} alt={`coffee shop: ${coffeShop.name}`} />
+          <div className={styles.reviews}>
+            {reviews && reviews.map(r =>
+              <div key={r.id} className={styles.reviewInfo}>
+                <div className={styles.userData}>
+                  <div>
+                    <img src="" alt="" />
+                    <span>{users.find(u => u.id === r.userId)?.username}</span>
+                  </div>
+                  <span>Reviews: {users.find(u => u.id === r.userId)?.totalReviews}</span>
+                </div>
+                <div className={styles.review}>
+                  <span>
+                    {new Array(10).fill(0).map((e, i) => {
+                      return <i key={i}>
+                        {
+                          i < r.rate ? 
+                            <img src={starIcon} alt="star filled"/>
+                            :<img src={starGreyIcon} alt="star empty"></img>
+                        }
+                      </i>
+                    })}
+                  </span>
+                  <p>{`"${r.review}"`}</p>
+                </div>
+              </div>
+            )}
           </div>
-        </div>
-        <div className={styles.reviews}>
-          {reviews && reviews.map(r =>
-            <div key={r.id} className={styles.reviewInfo}>
-              <p>{`"${r.review}"`}</p>
-              <span>{users.find(u => u.id === r.userId)?.username}</span>
-            </div>
-          )}
         </div>
       </div>
     </>
