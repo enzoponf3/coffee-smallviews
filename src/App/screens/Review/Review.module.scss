@@ -8,6 +8,7 @@
   transform: scaleY(0);
   transform-origin: bottom;
   transition: transform 0.3s;
+  z-index: 3;
 }
 
 .open {
@@ -54,16 +55,41 @@
   justify-content: space-around;
   padding: 0rem 2rem 0 0;
   div {
+    align-items: center;
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50%;
     span {
       font-size: 1.5rem;
     }
   }
+  a {
+    display: flex;
+    padding: 0.3rem 0.7rem;
+    background-color: rgba($color: #f9f9f9, $alpha: 0.9);
+    border-radius: 3rem;
+    color: #121212;
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: background-color 0.3s;
+    i {
+      margin-left: 0.5rem;
+      display: flex;
+      filter: invert(1);
+      img {
+        height: 1.2rem;
+      }
+    }
+    &:hover {
+      color: var(--primary);
+      background-color: var(--tertiary);
+      i {
+        filter: invert(0);
+      }
+    }
+  }
   h2 {
-    width: 50%;
     text-transform: capitalize;
     font-size: 1.5rem;
     text-align: center;

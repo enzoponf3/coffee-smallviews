@@ -1,10 +1,11 @@
 import * as React from "react"
 import { Helmet } from "react-helmet-async"
-import { useParams } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 
 import closeIcon from "~/assets/icons/close_white_24dp.svg"
 import starIcon from "~/assets/icons/star_black_24dp.svg"
 import starGreyIcon from "~/assets/icons/star-grey.svg"
+import penIcon from "~/assets/icons/edit_white_24dp.svg"
 import styles from "./Review.module.scss"
 
 interface Props{
@@ -87,6 +88,7 @@ const Review: React.FC<Props> = ({coffeeId, closeReview}) => {
     },
   ]
 
+  const history = useHistory()
   return (
     <>
       <Helmet>
@@ -99,11 +101,14 @@ const Review: React.FC<Props> = ({coffeeId, closeReview}) => {
           <div className={styles.coffeInfo}>
             <h2>{coffeShop.name}</h2>
             <div>
-            Score
+                Score
               <span>
                 {coffeShop.rate}
               </span>
             </div>
+            <Link to={`/add/${coffeeId}`}>Add
+              <i><img src={penIcon} alt="pen" /></i>
+            </Link>
           </div>
           <div className={styles.reviews}>
             {reviews && reviews.map(r =>
@@ -122,7 +127,7 @@ const Review: React.FC<Props> = ({coffeeId, closeReview}) => {
                         {
                           i < r.rate ? 
                             <img src={starIcon} alt="star filled"/>
-                            :<img src={starGreyIcon} alt="star empty"></img>
+                            :<img src={starGreyIcon} alt="star empty"/>
                         }
                       </i>
                     })}

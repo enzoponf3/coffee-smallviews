@@ -7,9 +7,9 @@ import penLogo from "~/assets/icons/edit_white_24dp.svg"
 import linkedinLogo from "~/assets/icons/linkedin.svg"
 import githubLogo from "~/assets/icons/github.svg"
 import Spinner from "~/App/components/spinner"
-import HomeScreen from "../Home"
-import About from "../About"
-import Review from "../Review"
+import Home from "../Home"
+import Add from "../Add"
+import Login from "../Login"
 
 const Layout: React.FC = () => {
   return (
@@ -23,14 +23,16 @@ const Layout: React.FC = () => {
               </h1>
             </NavLink>
             <div>
-              <NavLink exact to="/add" activeClassName={styles.activeLink}>Review<i><img src={penLogo} alt="" /></i></NavLink>
-              <a href="#">Log in</a>
+              <NavLink exact to="/add" >Review<i><img src={penLogo} alt="pen" /></i></NavLink>
+              <NavLink to="/login">Log in</NavLink>
             </div>
           </nav>
         </header>
         <Switch>
-          <Route exact path="/"><main><HomeScreen/></main></Route>
-          <Route path="/add" ><main>{/*<Add/>*/}</main></Route>
+          <Route exact path="/"><main><Home/></main></Route>
+          <Route exact path="/add" ><main><Add/></main></Route>
+          <Route exact path="/add/:coffeeId" render={()=> <main><Add/></main> }/>
+          <Route exact path="/login"><main><Login/></main></Route>
         </Switch>
       </Router>
       <footer>

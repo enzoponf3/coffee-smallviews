@@ -52,7 +52,7 @@ const Home: React.FC = () => {
 
   const { register, handleSubmit } = useForm()
   const onSubmit: SubmitHandler<IFormInput> = data => {
-    console.log(data)
+    console.log("to do")
   }
 
   return (
@@ -62,16 +62,6 @@ const Home: React.FC = () => {
         <meta name="description" content="Home page, see coffee shops and them scores of the community"/>
       </Helmet>
       <div className={styles.headBackground}>
-        {/* <img className={styles.logo} src={logo} alt="" />
-        <div className={styles.stripes}>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-        <div className={styles.circles}>
-          <div></div>
-          <div></div>
-        </div>*/}
         <img src={coffeDust} alt="coffee dust" />
         <img src={coffeTrace} alt="coffee trace" />
       </div> 

@@ -27,7 +27,7 @@ const CoffeCard: React.FC<Props> = ({coffee, selectCoffee}) => {
         </div>
       </div>
       <div className={styles.reviewImage}>
-        <img loading="lazy" src={ coffee.image ? coffee.image : `src/assets/images/${coffee.image}`} alt="" />
+        <img decoding="async" loading="lazy" src={ coffee.image ? coffee.image : `src/assets/images/${coffee.image}`} alt="" />
       </div>
     </div>          
   )
