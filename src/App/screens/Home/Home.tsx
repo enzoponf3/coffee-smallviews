@@ -3,17 +3,13 @@ import { motion } from "framer-motion"
 import { Helmet } from "react-helmet-async"
 import { SubmitHandler, useForm } from "react-hook-form"
 
-import logo from "~/assets/icons/logo.svg"
 import coffeDust from "~/assets/images/coffee-dust.png"
 import coffeTrace from "~/assets/images/coffee-trace.png"
 import searchIcon from "~/assets/icons/search_black_24dp.svg"
 import styles from "./Home.module.scss"
 import CoffeCard from "~/App/components/coffee/CoffeCard"
-import Review from "../Review"
 
 const Home: React.FC = () => {
-  
-  const [selectedCoffe, setSelectedCofee] = React.useState<string>("")
 
   const coffees = [
     {
@@ -59,8 +55,8 @@ const Home: React.FC = () => {
     <>
       <Helmet>
         <title>Coffee Smallview</title>
-        <meta name="description" content="Home page, see coffee shops and them scores of the community"/>
-      </Helmet>
+        <meta name="description" content="Look out coffee shops and them scores of the community. Help other to find the bests coffee shops in the world."/>
+      </Helmet> 
       <div className={styles.headBackground}>
         <img src={coffeDust} alt="coffee dust" />
         <img src={coffeTrace} alt="coffee trace" />
@@ -87,11 +83,10 @@ const Home: React.FC = () => {
           initial={{opacity: 0, y:100}}
           transition={{duration:1}}>
           { coffees && coffees.map( coffe => (
-            <CoffeCard selectCoffee={()=> setSelectedCofee(coffe.id)} key={coffe.id} coffee={coffe}/>
+            <CoffeCard key={coffe.id} coffee={coffe}/>
           ))}
         </motion.div>
       }
-      <Review closeReview={() => setSelectedCofee("")} coffeeId={selectedCoffe}/>
     </>
   )
 }

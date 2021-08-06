@@ -1,19 +1,15 @@
 import * as React from "react"
 import { Helmet } from "react-helmet-async"
-import { Link, useHistory } from "react-router-dom"
+import { Link, useHistory, useParams } from "react-router-dom"
 
 import closeIcon from "~/assets/icons/close_white_24dp.svg"
 import starIcon from "~/assets/icons/star_black_24dp.svg"
-import starGreyIcon from "~/assets/icons/star-grey.svg"
+import moneyIconFilled from "~/assets/icons/money-green.svg"
 import penIcon from "~/assets/icons/edit_white_24dp.svg"
 import styles from "./Review.module.scss"
 
-interface Props{
-  coffeeId: string
-  closeReview: () => void
-}
-
-const Review: React.FC<Props> = ({coffeeId, closeReview}) => {
+const Review: React.FC= () => {
+  const { coffeeId } = useParams<{coffeeId: string}>()
 
   const coffeShop = {
     id: "17645157",
@@ -64,6 +60,7 @@ const Review: React.FC<Props> = ({coffeeId, closeReview}) => {
       createdAt:"02-04-2021",
       userId:"9999",
       rate:8,
+      prices:4
     },{
       id: "2",
       coffeId:"17645157",
@@ -71,6 +68,7 @@ const Review: React.FC<Props> = ({coffeeId, closeReview}) => {
       createdAt:"02-04-2021",
       userId:"999",
       rate:7,
+      prices:3
     },{
       id: "3",
       coffeId:"17645157",
@@ -78,6 +76,7 @@ const Review: React.FC<Props> = ({coffeeId, closeReview}) => {
       createdAt:"02-04-2021",
       userId:"99",
       rate:7,
+      prices:3
     },{
       id: "4",
       coffeId:"17645157",
@@ -85,6 +84,7 @@ const Review: React.FC<Props> = ({coffeeId, closeReview}) => {
       createdAt:"02-04-2021",
       userId:"12",
       rate:6,
+      prices:5
     },
   ]
 
@@ -95,48 +95,46 @@ const Review: React.FC<Props> = ({coffeeId, closeReview}) => {
         <title>Review | {coffeShop.name}</title>
         <meta name="description" content={`Review of the coffee shop ${coffeShop.name}`}/>
       </Helmet>
-      <div className={coffeeId === "" ? `${styles.reviewBack}` : `${styles.reviewBack} ${styles.expanded}`}>
-        <div className={styles.reviewContainer}>
-          <button onClick={closeReview} className={styles.close} type="button"><i><img src={closeIcon} alt="close" /></i></button>
-          <div className={styles.coffeInfo}>
-            <h2>{coffeShop.name}</h2>
-            <div>
+      <div className={styles.reviewContainer}>
+        <button className={styles.close} type="button"><i><img src={closeIcon} alt="close" /></i></button>
+        <div className={styles.coffeInfo}>
+          <h2>{coffeShop.name}</h2>
+          <div>
                 Score
-              <span>
-                {coffeShop.rate}
-              </span>
-            </div>
-            <Link to={`/add/${coffeeId}`}>Add
-              <i><img src={penIcon} alt="pen" /></i>
-            </Link>
+            <span>
+              {coffeShop.rate}
+            </span>
           </div>
-          <div className={styles.reviews}>
-            {reviews && reviews.map(r =>
-              <div key={r.id} className={styles.reviewInfo}>
-                <div className={styles.userData}>
-                  <div>
-                    <img src="" alt="" />
-                    <span>{users.find(u => u.id === r.userId)?.username}</span>
-                  </div>
-                  <span>Reviews: {users.find(u => u.id === r.userId)?.totalReviews}</span>
+          <Link to={`/add/${coffeeId}`}>Add
+            <i><img src={penIcon} alt="pen" /></i>
+          </Link>
+        </div>
+        <div className={styles.reviews}>
+          {reviews && reviews.map(r =>
+            <div key={r.id} className={styles.reviewInfo}>
+              <div className={styles.userData}>
+                <div>
+                  <img src="" alt="" />
+                  <span>{users.find(u => u.id === r.userId)?.username}</span>
                 </div>
-                <div className={styles.review}>
-                  <span>
-                    {new Array(10).fill(0).map((e, i) => {
-                      return <i key={i}>
-                        {
-                          i < r.rate ? 
-                            <img src={starIcon} alt="star filled"/>
-                            :<img src={starGreyIcon} alt="star empty"/>
-                        }
-                      </i>
-                    })}
-                  </span>
-                  <p>{`"${r.review}"`}</p>
-                </div>
+                <span>Reviews: {users.find(u => u.id === r.userId)?.totalReviews}</span>
               </div>
-            )}
-          </div>
+              <div className={styles.review}>
+                <div className={styles.rateInfo}>
+                  <div>
+                    <i><img src={starIcon} alt="star filled"/></i>
+                    <span><strong>{r.rate}</strong>/10</span>
+                  </div>
+                  <div>
+                    <i><img src={moneyIconFilled} alt="star filled"/></i>
+                    <span><strong>{r.prices}</strong>/5</span>
+                  </div>
+
+                </div>
+                <p>{`"${r.review}"`}</p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </>

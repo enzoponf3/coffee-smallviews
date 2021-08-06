@@ -11,31 +11,16 @@
   z-index: 3;
 }
 
-.open {
-  display: inline-block;
-}
-
 .reviewContainer {
-  position: fixed;
-  bottom: 0;
+  width: 100%;
   background-color: var(--primary);
-  box-shadow: 0 0 12px rgba($color: #000000, $alpha: 0.3);
-  width: 90%;
-  z-index: 2;
-  left: 5%;
-  height: 95vh;
-  overflow: hidden;
-  border-top-left-radius: 42px;
-  border-top-right-radius: 42px;
   display: flex;
   flex-direction: column;
-}
-
-.expanded {
-  transform: scaleY(1);
+  padding: 3rem 0;
 }
 
 .close {
+  display: none;
   margin: 2rem 3rem 0rem auto;
   border-radius: 50%;
   border: none;
@@ -125,7 +110,7 @@
     padding: 2rem;
     border-radius: 12px;
     background-color: rgba($color: #f9f9f9, $alpha: 0.9);
-    box-shadow: 0 0 6px rgba($color: #000000, $alpha: 0.3);
+    box-shadow: 0 0 1rem rgba($color: #000000, $alpha: 0.1);
     .review {
       padding: 0 2rem;
       display: flex;
@@ -160,6 +145,28 @@
       }
       span {
         font-size: 0.8rem;
+      }
+    }
+    .rateInfo {
+      display: flex;
+      margin-bottom: 1rem;
+      div {
+        display: flex;
+        &:nth-child(1) {
+          padding-right: 2rem;
+        }
+        strong {
+          font-size: 1rem;
+          color: #121212;
+        }
+        span {
+          font-size: 0.8rem;
+          color: #777;
+        }
+        i {
+          margin-top: auto;
+          margin-right: 0.2rem;
+        }
       }
     }
   }

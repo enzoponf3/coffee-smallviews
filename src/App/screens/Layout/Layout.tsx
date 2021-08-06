@@ -6,15 +6,17 @@ import logo from "~/favicon.svg"
 import penLogo from "~/assets/icons/edit_white_24dp.svg"
 import linkedinLogo from "~/assets/icons/linkedin.svg"
 import githubLogo from "~/assets/icons/github.svg"
-import Spinner from "~/App/components/spinner"
 import Home from "../Home"
 import Add from "../Add"
 import Login from "../Login"
+import Review from "../Review"
+import ScrollToTop from "./ScrollToTop"
 
 const Layout: React.FC = () => {
   return (
     <>
       <Router>
+        <ScrollToTop/>
         <header className={styles.header}>
           <nav className={styles.headerContainer}>
             <NavLink to="/">
@@ -24,7 +26,7 @@ const Layout: React.FC = () => {
             </NavLink>
             <div>
               <NavLink exact to="/add" >Review<i><img src={penLogo} alt="pen" /></i></NavLink>
-              <NavLink to="/login">Log in</NavLink>
+              <NavLink to="/login">Log In</NavLink>
             </div>
           </nav>
         </header>
@@ -33,6 +35,8 @@ const Layout: React.FC = () => {
           <Route exact path="/add" ><main><Add/></main></Route>
           <Route exact path="/add/:coffeeId" render={()=> <main><Add/></main> }/>
           <Route exact path="/login"><main><Login/></main></Route>
+          <Route exact path="/login/:coffeeId"><main><Login/></main></Route>
+          <Route exact path="/review/:coffeeId"><main><Review/></main></Route>
         </Switch>
       </Router>
       <footer>
