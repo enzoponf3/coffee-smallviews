@@ -11,6 +11,7 @@ import Add from "../Add"
 import Login from "../Login"
 import Review from "../Review"
 import ScrollToTop from "./ScrollToTop"
+import Register from "../Register"
 
 const Layout: React.FC = () => {
   return (
@@ -36,6 +37,8 @@ const Layout: React.FC = () => {
           <Route exact path="/add/:coffeeId" render={()=> <main><Add/></main> }/>
           <Route exact path="/login"><main><Login/></main></Route>
           <Route exact path="/login/:coffeeId"><main><Login/></main></Route>
+          <Route exact path="/register"><main><Register/></main></Route>
+          <Route exact path="/register/:coffeeId"><main><Register/></main></Route>
           <Route exact path="/review/:coffeeId"><main><Review/></main></Route>
         </Switch>
       </Router>
