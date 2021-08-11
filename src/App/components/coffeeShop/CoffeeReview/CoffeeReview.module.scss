@@ -1,0 +1,70 @@
+.reviewInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 90%;
+  margin-bottom: 2rem;
+  text-align: center;
+  padding: 2rem;
+  border-radius: 12px;
+  background-color: rgba($color: #f9f9f9, $alpha: 0.9);
+  box-shadow: 0 0 1rem rgba($color: #000000, $alpha: 0.1);
+  .review {
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    p {
+      font-style: italic;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+  }
+  .userData {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    justify-content: center;
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        padding: 1.5rem;
+        border-radius: 50%;
+        background-color: red;
+        margin: 0.5rem;
+      }
+      span {
+        padding: 1rem 0;
+        font-weight: 700;
+        font-size: 1rem;
+      }
+    }
+    span {
+      font-size: 0.8rem;
+    }
+  }
+  .rateInfo {
+    display: flex;
+    margin-bottom: 1rem;
+    div {
+      display: flex;
+      &:nth-child(1) {
+        padding-right: 2rem;
+      }
+      strong {
+        font-size: 1rem;
+        color: #121212;
+      }
+      span {
+        font-size: 0.8rem;
+        color: #777;
+      }
+      i {
+        margin-top: auto;
+        margin-right: 0.2rem;
+      }
+    }
+  }
+}

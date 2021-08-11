@@ -7,9 +7,14 @@ import coffeDust from "~/assets/images/coffee-dust.png"
 import coffeTrace from "~/assets/images/coffee-trace.png"
 import searchIcon from "~/assets/icons/search_black_24dp.svg"
 import styles from "./Home.module.scss"
-import CoffeCard from "~/App/components/coffee/CoffeCard"
+
+import CoffeeCard from "~/App/components/coffeeShop/CoffeeCard"
+import { CoffeeShop } from "~/App/components/coffeeShop/types"
+import coffeeShopApi from "~/App/components/coffeeShop/api"
 
 const Home: React.FC = () => {
+
+  const [printCoffees, setPrintCoffees] = React.useState<CoffeeShop[]>([])
 
   const coffees = [
     {
@@ -47,8 +52,10 @@ const Home: React.FC = () => {
   }
 
   const { register, handleSubmit } = useForm()
+
   const onSubmit: SubmitHandler<IFormInput> = data => {
-    console.log("to do")
+    coffeeShopApi.getByName(data.coffeeName)
+      .then(coffees => setPrintCoffees(coffees))
   }
 
   return (
@@ -82,8 +89,8 @@ const Home: React.FC = () => {
           animate={{y:0, opacity:1}}
           initial={{opacity: 0, y:100}}
           transition={{duration:1}}>
-          { coffees && coffees.map( coffe => (
-            <CoffeCard key={coffe.id} coffee={coffe}/>
+          { printCoffees && printCoffees.map( coffee => (
+            <CoffeeCard key={coffee.id} coffee={coffee}/>
           ))}
         </motion.div>
       }

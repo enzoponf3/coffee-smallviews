@@ -2,14 +2,15 @@ import * as React from "react"
 
 import starIcon from "~/assets/icons/star_black_24dp.svg"
 import priceIcon from "~/assets/icons/attach_money_black_24dp.svg"
-import styles from "./CoffeCard.module.scss"
+import styles from "./CoffeeCard.module.scss"
 import { Link } from "react-router-dom"
+import { CoffeeShop } from "../types"
 
 interface Props{
-    coffee: any
+    coffee: CoffeeShop
 }
 
-const CoffeCard: React.FC<Props> = ({coffee}) => {
+const CoffeCard: React.FC<Props> = ({ coffee }) => {
   return (
     <Link to={`/review/${coffee.id}`} className={styles.review}>
       <div className={styles.coffeeData}>
