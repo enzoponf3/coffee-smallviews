@@ -12,8 +12,12 @@ import Login from "../Login"
 import Review from "../Review"
 import ScrollToTop from "./ScrollToTop"
 import Register from "../Register"
+import { useLogout, useUser } from "~/App/components/user/hooks"
 
 const Layout: React.FC = () => {
+  const user = useUser()
+  const logout = useLogout()
+
   return (
     <>
       <Router>
@@ -26,8 +30,13 @@ const Layout: React.FC = () => {
               </h1>
             </NavLink>
             <div>
-              <NavLink exact to="/add" >Review<i><img src={penLogo} alt="pen" /></i></NavLink>
-              <NavLink to="/login">Log In</NavLink>
+              {user 
+                ?<>
+                  <NavLink exact to="/add" >Review<i><img src={penLogo} alt="pen" /></i></NavLink>
+                  <button className={styles.logoutBtn} onClick={() => logout()}>LogOut <img src={user.photoURL} alt="user profile"/></button>
+                </>
+                : <NavLink to="/login" className={styles.logoutBtn}>Log In</NavLink>
+              }
             </div>
           </nav>
         </header>

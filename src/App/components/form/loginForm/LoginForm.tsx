@@ -11,6 +11,7 @@ const LoginForm: React.FC = () => {
       <input placeholder="Type your password" type="password" />
       <button type="submit">Log In</button>
     </form>
+    
   )
 }
 

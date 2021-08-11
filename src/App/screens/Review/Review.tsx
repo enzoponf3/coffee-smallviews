@@ -6,7 +6,7 @@ import closeIcon from "~/assets/icons/close_white_24dp.svg"
 import penIcon from "~/assets/icons/edit_white_24dp.svg"
 import styles from "./Review.module.scss"
 
-import { Review } from "~/App/components/review/types"
+import { Review as IReview } from "~/App/components/review/types"
 import CoffeeReview from "~/App/components/coffeeShop/CoffeeReview" 
 import { User } from "~/App/components/user/types"
 import userApi from "~/App/components/user/api"
@@ -22,7 +22,7 @@ const Review: React.FC= () => {
     image: "https://www.lacafeteguia.com/wp-content/uploads/2018/04/salon-The-Shelter-Foto-La-Cafeteguia-580x387.jpg"
   }
 
-  const reviews: Review[] = [
+  const reviews: IReview[] = [
     {
       id: "1",
       coffeId:"17645157",
