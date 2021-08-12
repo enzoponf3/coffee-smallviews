@@ -55,14 +55,17 @@ const UserProvider: React.FC = ({children}) => {
   }
 
   async function handleRegister(user:User, userLogin:UserLogin) {
-    return firebaseApp.auth().createUserWithEmailAndPassword(userLogin.email, userLogin.password)
-      .then(userCredential => {
-        firebaseApp.auth().currentUser().updateProfile({
-          displayName: user.username,
-          totalReviews: 0
-        })
-        setUser(userCredential.user)
+    await firebaseApp.auth().createUserWithEmailAndPassword(user.email, userLogin.password)
+    const currentUser = firebaseApp.auth().currentUser
+    await currentUser.updateProfile({
+      displayName: user.displayName,
+      totalReviews: 0
+    })
+      .then(() => {
+        const db = firebaseApp.firestore()
+        db.collection("users").add(user)
       })
+    return
   }
 
   const state: Context["state"] = {

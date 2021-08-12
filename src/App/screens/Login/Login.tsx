@@ -9,9 +9,7 @@ import Spinner from "~/App/components/spinner"
 import { useGoogleLogin, useUser } from "~/App/components/user/hooks"
 
 const Login: React.FC = () => {
-
   const [status, setStatus] = React.useState<"resolved" | "pending">("resolved")
-
   const { coffeeId } = useParams<{coffeeId: string}>()
   const user = useUser()
   const googleLogin = useGoogleLogin()

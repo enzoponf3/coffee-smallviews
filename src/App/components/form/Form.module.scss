@@ -37,6 +37,7 @@
     }
   }
   button {
+    position: relative;
     width: 100%;
     padding: 0.5rem 2rem;
     background-color: var(--tertiary);
@@ -50,6 +51,29 @@
     }
     &:active {
       transform: translateY(4px);
+    }
+    &:disabled {
+      filter: brightness(0.7);
+      cursor: wait;
+    }
+  }
+
+  .errorLog {
+    background-color: rgba($color: #f44336, $alpha: 0.1);
+    margin-bottom: 1rem;
+    li {
+      width: 100%;
+      list-style-type: none;
+      color: var(--low);
+      margin: 0;
+      padding: 0;
+      padding: 0 1rem;
+      &:first-child {
+        padding-top: 1rem;
+      }
+      &:last-child {
+        padding-bottom: 1rem;
+      }
     }
   }
 }

@@ -33,7 +33,14 @@ const Layout: React.FC = () => {
               {user 
                 ?<>
                   <NavLink exact to="/add" >Review<i><img src={penLogo} alt="pen" /></i></NavLink>
-                  <button className={styles.logoutBtn} onClick={() => logout()}>LogOut <img src={user.photoURL} alt="user profile"/></button>
+                  <button className={styles.logoutBtn} onClick={() => logout()}>
+                    LogOut 
+                    {console.log(user)}
+                    {user.photoURL === null
+                      ? <div>{user.email.charAt(1).toLocaleUpperCase}</div>
+                      : <img src={user.photoURL} alt="user profile"/>
+                    }
+                  </button>
                 </>
                 : <NavLink to="/login" className={styles.logoutBtn}>Log In</NavLink>
               }
