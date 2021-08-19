@@ -32,12 +32,11 @@ const Layout: React.FC = () => {
             <div>
               {user 
                 ?<>
-                  <NavLink exact to="/add" >Review<i><img src={penLogo} alt="pen" /></i></NavLink>
+                  <NavLink exact to="/add" >Add<i><img src={penLogo} alt="pen" /></i></NavLink>
                   <button className={styles.logoutBtn} onClick={() => logout()}>
                     LogOut 
-                    {console.log(user)}
                     {user.photoURL === null
-                      ? <div>{user.email.charAt(1).toLocaleUpperCase}</div>
+                      ? <div className={styles.charAvatar}>{user.displayName ? user.displayName[0].toLocaleUpperCase() : user.email[0].toLocaleUpperCase()}</div>
                       : <img src={user.photoURL} alt="user profile"/>
                     }
                   </button>

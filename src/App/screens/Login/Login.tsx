@@ -19,8 +19,14 @@ const Login: React.FC = () => {
   }
   
   if(status === "pending"){
-    return <Spinner/> 
+    return <Spinner /> 
   } 
+
+  const login = () => {
+    setStatus("pending")
+    googleLogin()
+      .catch(() => setStatus("resolved"))
+  }
   
   return (
     <>
@@ -32,12 +38,7 @@ const Login: React.FC = () => {
         <button 
           type="button" 
           className={styles.google} 
-          onClick={() => {
-            setStatus("pending")
-            googleLogin()
-              .then(() => setStatus("resolved"))
-              .catch(() => setStatus("resolved"))
-          }}
+          onClick={login}
         >Google</button>
         <div className={styles.separator}>Login using your email</div>
         <LoginForm/>

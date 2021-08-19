@@ -7,6 +7,8 @@ import starIcon from "~/assets/icons/star_black_24dp.svg"
 import starGreyIcon from "~/assets/icons/star-grey.svg"
 import moneyIcon from "~/assets/icons/money-green.svg"
 import moneyGreyIcon from "~/assets/icons/money-grey.svg"
+import { CoffeeShop } from "../../coffeeShop/types"
+import { Review } from "../../review/types"
 
 
 const ReviewForm: React.FC = () => {
@@ -17,8 +19,8 @@ const ReviewForm: React.FC = () => {
 
   
 interface FormInput {
-    coffeShop:string,
-    review: string
+    coffeeShop: CoffeeShop,
+    review: Review
 }
 
 const onSubmit: SubmitHandler<FormInput> = data => {
@@ -29,11 +31,22 @@ return (
     <label>Coffe Shop</label>
     {
       coffeeId === undefined 
-        ? <input placeholder="Enter the coffee shop name" type="text"/>
+        ? <input 
+          type="text"
+          {...register("coffeeShop.name",{ required: "Please enter the coffee shop name"})}
+          placeholder="Enter the coffee shop name" 
+        />
         : <input defaultValue={coffeeId} type="text" readOnly={true} />
     }
     <label>short review</label>
-    <textarea placeholder="Enter a short review"/>
+    <textarea 
+      {...register("review.content",{required: "Please write a short review."})}
+      placeholder="Enter a short review"/>
+    <label>CoffeShop Image Link</label>
+    <input 
+      type="text" 
+      {...register("coffeeShop.image")}
+      placeholder="(Optional) Enter a link to the coffee shop image" />
     <div className={styles.rateSelector}>
       {new Array(10).fill(0).map((e,i) => {
         return <i key={i} onClick={() => setRate(i + 1)}>

@@ -66,7 +66,7 @@ const Review: React.FC= () => {
   }
 
   const findUser = (userId: string) => {
-    return usersWithReview.find( u => u.id === userId) ?? retrieveUser(userId)
+    return usersWithReview.find( u => u.uid === userId) ?? retrieveUser(userId)
   }
 
   if(coffeeId) return <Redirect to="/"/>

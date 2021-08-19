@@ -75,6 +75,17 @@
         border-radius: 50%;
         margin-left: 0.5rem;
       }
+      .charAvatar {
+        height: 1.5rem;
+        width: 1.5rem;
+        background-color: var(--primary);
+        border-radius: 50%;
+        color: var(--secondary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 0.5rem;
+      }
     }
   }
   .burger {

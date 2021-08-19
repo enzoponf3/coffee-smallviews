@@ -3,7 +3,6 @@ import { SubmitHandler, useForm } from "react-hook-form"
 
 import styles from "./../Form.module.scss"
 import { useLogin } from "~/App/components/user/hooks"
-import { Redirect } from "react-router-dom"
 
 const LoginForm: React.FC = () => {
   const [disabled, setDisabled] = React.useState<boolean>(false)
@@ -18,14 +17,10 @@ const LoginForm: React.FC = () => {
   const submit: SubmitHandler<UserLogin> = (data) =>{
     setDisabled(true)
     login(data)
-      .then(() => {
-        return <Redirect to="/"/>
-      })
       .catch(()=>{
         setDisabled(false)
         alert("Failed to login")
       })
-    console.log(data)
   }
 
   return (

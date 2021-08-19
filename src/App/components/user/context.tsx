@@ -38,34 +38,49 @@ const UserProvider: React.FC = ({children}) => {
     }
   }
 
-  async function handleGoogleLogin() {
-    const googleProvider = new firebase.auth.GoogleAuthProvider()
-    return firebaseApp.auth().signInWithPopup(googleProvider)
-      .then(result => {
-        if(!result.user.totalReviews){
-          firebaseApp.auth().currentUser().updateProfile({
+  const addUserToDatabase = () => {
+    const currentUser = firebaseApp.auth().currentUser
+    const users = firebaseApp.firestore().collection("users")
+    return users
+      .where("id", "==", currentUser.uid)
+      .get()
+      .then( doc => {
+        if(doc.empty){
+          const {uid, displayName, email, photoURL, } = currentUser
+          const newUser: User = {
+            uid,
+            displayName,
+            email,
+            photoURL,
             totalReviews: 0
-          })
+          }
+          return users.add(newUser)
         }
-      })  
+      })
   }
 
+  async function handleGoogleLogin() {
+    const googleProvider = new firebase.auth.GoogleAuthProvider()
+    await firebaseApp.auth().signInWithPopup(googleProvider)
+    return addUserToDatabase()
+  }
   async function handleLogout() {
     return firebaseApp.auth().signOut()
   }
 
   async function handleRegister(user:User, userLogin:UserLogin) {
-    await firebaseApp.auth().createUserWithEmailAndPassword(user.email, userLogin.password)
-    const currentUser = firebaseApp.auth().currentUser
-    await currentUser.updateProfile({
-      displayName: user.displayName,
-      totalReviews: 0
-    })
+    return firebaseApp.auth()
+      .createUserWithEmailAndPassword(user.email, userLogin.password)
       .then(() => {
-        const db = firebaseApp.firestore()
-        db.collection("users").add(user)
+        const currentUser = firebaseApp.auth().currentUser
+        currentUser.updateProfile({
+          displayName: user.displayName
+        })
+          .then(() => {
+            addUserToDatabase()
+          })
       })
-    return
+    
   }
 
   const state: Context["state"] = {
